@@ -21,7 +21,7 @@ Avrioc is a real-time data processing and visualization system for user interact
 
 1. Clone the repository:
    ```
-   git clone https://github.com/sunilaryal18/avrioc.git
+   git clone https://github.com/sunilaryal1/avrioc.git
    cd avrioc
    ```
 
@@ -50,19 +50,37 @@ Avrioc is a real-time data processing and visualization system for user interact
 
 ## Running the System
 
-1. Start the data generator:
+1. Ensure all required services are running:
+   - Kafka (on `localhost:9092`)
+   - MongoDB (on `localhost:27017`)
+   - Zookeeper (required for Kafka)
+
+2. Run the entire system using the `run_avrioc.py` script:
+   ```
+   python run_avrioc.py
+   ```
+   This script will start all components of the Avrioc system:
+   - Data Generator
+   - Consumer and Aggregator
+   - Dashboard Server
+
+   You'll see output from each component in the console.
+
+Alternatively, you can run each component separately:
+
+3. Start the data generator:
    ```
    python data_generator.py
    ```
    This will start producing random user interaction data to Kafka.
 
-2. Start the consumer and aggregator:
+4. Start the consumer and aggregator:
    ```
    python consumer_aggregator.py
    ```
    This will consume data from Kafka, aggregate it, and store results in MongoDB.
 
-3. Start the dashboard server:
+5. Start the dashboard server:
    ```
    python dashboard.py
    ```
@@ -81,11 +99,15 @@ Avrioc is a real-time data processing and visualization system for user interact
 
 If you encounter issues:
 
-1. Ensure all prerequisites are correctly installed and running.
+1. Ensure all prerequisites are correctly installed and running:
+   - Kafka
+   - MongoDB
+   - Zookeeper
 2. Check if Kafka and MongoDB are accessible on the configured hosts and ports.
 3. Verify that the `user_interactions` topic exists in Kafka.
 4. Check the console output of each script for error messages.
 5. For dashboard issues, check the browser's developer console for JavaScript errors.
+6. If using `run_avrioc.py`, make sure all required Python packages are installed.
 
 If problems persist, please open an issue on the GitHub repository with detailed information about the error and your environment.
 
